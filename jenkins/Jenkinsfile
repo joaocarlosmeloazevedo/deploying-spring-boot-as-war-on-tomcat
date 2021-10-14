@@ -2,13 +2,14 @@
 
 pipeline{
 	agent any
-	environment {
-	    PATH = '/opt/apache-maven-3.6.3/bin:$PATH'
-	}
+	//environment {
+	//    PATH = '/opt/apache-maven-3.6.3/bin:$PATH'
+	//}
 	stages{
 	   	stage('Build'){
 	   		steps{
 	   	    	echo 'Realizando Build...'
+	   	    	sh 'mvn -version'
         		sh 'mvn clean install'
         		echo 'Build finalizado.'
 	   		}
@@ -23,5 +24,13 @@ pipeline{
     		}
 		}
 	}
+	
+	post{
+	    always{
+	        cleanWs()
+	    }
+
+	}
+
 }
    
