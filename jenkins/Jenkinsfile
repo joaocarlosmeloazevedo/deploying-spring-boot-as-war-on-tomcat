@@ -1,9 +1,13 @@
 //!/usr/bin/env groovy
 
 node{
+	agent any
+	environment {
+	    PATH = '/opt/apache-maven-3.6.3/bin:$PATH'
+	}
+
     stage('Build'){
     		echo 'Realizando Build...'
-        	sh '/opt/maven/bin/mvn -v'
         	sh 'mvn clean install'
         	echo 'Build finalizado.'
     }
