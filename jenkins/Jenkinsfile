@@ -2,12 +2,8 @@
 
 node{
     stage('Build'){
-        	agent{
-        	    	echo 'Build finalizado'
-        	    	sh '/opt/maven/bin/mvn -v'
-        	    }
-        	steps{
-        	    sh 'mvn package -Dmaven.test.skip=true'
-        }
-     }
-   }
+        	echo 'Build finalizado'
+        	sh '/opt/maven/bin/mvn -v'
+    }
+}
+   
