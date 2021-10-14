@@ -6,12 +6,13 @@ node{
         	echo 'Realizando Build...'
         	echo 'Build finalizado.'
     }
-    stage('Test'){
-        echo 'Realizando Teste...'
-        echo 'Teste finalizado.'
-    }
+    
     stage('Deploy'){
-        echo 'Realizando Deploy...'
+    	echo 'Realizando Deploy...'
+    	deploy adapters: [tomcat9(credentialsId: '190814f7-9a8e-4270-a9b2-5fe4bdf6cbb4', 
+    						path: '', url: 'http://20.201.48.197:8080')], 
+    						contextPath: 'deploying-spring-boot-as-war-on-tomcat', war: '**/*.war'
+        
         echo 'Deploy finalizado.'
     }
 
