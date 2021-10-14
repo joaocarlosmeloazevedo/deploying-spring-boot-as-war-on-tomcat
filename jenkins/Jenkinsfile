@@ -1,26 +1,27 @@
 //!/usr/bin/env groovy
 
-node{
+pipeline{
 	agent any
 	environment {
 	    PATH = '/opt/apache-maven-3.6.3/bin:$PATH'
 	}
-
-    stage('Build'){
-    		echo 'Realizando Build...'
-        	sh 'mvn clean install'
-        	echo 'Build finalizado.'
-    }
-    
-    stage('Deploy'){
-    echo 'Realizando Deploy...'
-    	deploy adapters: [tomcat9(credentialsId: '190814f7-9a8e-4270-a9b2-5fe4bdf6cbb4', 
-    						path: '', url: 'http://20.201.48.197:8080')], 
-    						contextPath: 'deploying-spring-boot-as-war-on-tomcat', war: '**/*.war'
-        
-        echo 'Deploy finalizado.'
-    }
-
-
+	stages{
+	   	stage('Build'){
+	   		steps{
+	   	    	echo 'Realizando Build...'
+        		sh 'mvn clean install'
+        		echo 'Build finalizado.'
+	   		}
+		}
+    	stage('Deploy'){
+    		steps{
+    	    	echo 'Realizando Deploy...'
+    			deploy adapters: [tomcat9(credentialsId: '190814f7-9a8e-4270-a9b2-5fe4bdf6cbb4', 
+    								path: '', url: 'http://20.201.48.197:8080')], 
+    								contextPath: 'deploying-spring-boot-as-war-on-tomcat', war: '**/*.war'
+        		echo 'Deploy finalizado.'
+    		}
+		}
+	}
 }
    
