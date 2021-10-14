@@ -2,9 +2,9 @@
 
 node{
     stage('Build'){
-    		build 'teste def'
+    		echo 'Realizando Build...'
         	sh '/opt/maven/bin/mvn -v'
-        	echo 'Realizando Build...'
+        	sh 'mvn clean install'
         	echo 'Build finalizado.'
     }
     
