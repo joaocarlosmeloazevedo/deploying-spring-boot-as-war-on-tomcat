@@ -2,8 +2,19 @@
 
 node{
     stage('Build'){
-        	echo 'Build finalizado'
         	sh '/opt/maven/bin/mvn -v'
+        	echo 'Realizando Build...'
+        	echo 'Build finalizado.'
     }
+    stage('Test'){
+        echo 'Realizando Teste...'
+        echo 'Teste finalizado.'
+    }
+    stage('Deploy'){
+        echo 'Realizando Deploy...'
+        echo 'Deploy finalizado.'
+    }
+
+
 }
    
